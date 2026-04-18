@@ -36,30 +36,32 @@ def gen_runs(nums: list[int]):
             new_run = False
         else:
             if descending:
-                if nums[i] < cur_run[i-1]:
+                if nums[i] < cur_run[-1]:
                     cur_run.append(nums[i])
                 else:
                     runs.append(cur_run)
                     cur_run = []
                     cur_run.append(nums[i])
                     descending = False
-
             else:
-                if nums[i] < cur_run[i-1]:
+                if len(cur_run) == 1:
+                    if nums[i] < cur_run[-1]:
+                        descending = True
+                    cur_run.append(nums[i])
+                    continue
+
+                if nums[i] < cur_run[-1]:
                     descending = True
-                    if len(cur_run) == 1:
-                        cur_run.append(nums[i])
-                    else:
-                        runs.append(cur_run)
-                        cur_run = []
-                        cur_run.append(nums[i])
+                    runs.append(cur_run)
+                    cur_run = []
+                    cur_run.append(nums[i])
                 else:
                     cur_run.append(nums[i])
 
-        if cur_run:
-            runs.append(cur_run)
-        
-        return runs
+    if cur_run:
+        runs.append(cur_run)
+    
+    return runs
 
 
 
