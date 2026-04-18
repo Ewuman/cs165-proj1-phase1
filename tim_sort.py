@@ -29,39 +29,30 @@ def tim_sort(nums: list[int]):
 def gen_runs(nums: list[int]):
     runs = []
 
-    new_run = True
-    descending = False
-    cur_run = []
-    for i in range(len(nums)):
-        if new_run:
-            cur_run.append(nums[i])
-            new_run = False
+    i = 0
+    n = len(nums)
+    while i < n:
+        run = [nums[i]]
+        i += 1
+
+        if i == n:
+            runs.append(run)
+            break
+
+        # determine direction
+        if nums[i] < nums[i - 1]:
+            # descending
+            while i < n and nums[i] < nums[i - 1]:
+                run.append(nums[i])
+                i += 1
+            run.reverse()
         else:
-            if descending:
-                if nums[i] < cur_run[-1]:
-                    cur_run.append(nums[i])
-                else:
-                    runs.append(cur_run)
-                    cur_run = []
-                    cur_run.append(nums[i])
-                    descending = False
-            else:
-                if len(cur_run) == 1:
-                    if nums[i] < cur_run[-1]:
-                        descending = True
-                    cur_run.append(nums[i])
-                    continue
+            # non-descending
+            while i < n and nums[i] >= nums[i - 1]:
+                run.append(nums[i])
+                i += 1
 
-                if nums[i] < cur_run[-1]:
-                    descending = True
-                    runs.append(cur_run)
-                    cur_run = []
-                    cur_run.append(nums[i])
-                else:
-                    cur_run.append(nums[i])
-
-    if cur_run:
-        runs.append(cur_run)
+        runs.append(run)
     
     return runs
 
@@ -69,10 +60,6 @@ def gen_runs(nums: list[int]):
 def tim_merge(run1: list[int], run2: list[int], stack: list[int], index):
     # index: index of run to remove from stack
     num_comparisons = 0
-    if (run1[0] > run1[-1]):
-        run1.reverse()
-    if (run2[0] > run2[-1]):
-        run2.reverse()
 
     merged = []
     i = j = 0
