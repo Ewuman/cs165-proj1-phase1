@@ -4,7 +4,7 @@ def tim_sort(nums: list[int]):
     stack = []
 
     while runs:
-        run = runs.pop()
+        run = runs.pop(0)
         stack.append(run)
 
         while True:
