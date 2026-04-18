@@ -10,13 +10,13 @@ def tim_sort(nums: list[int]):
         while True:
             height = len(stack)
             if height >= 3 and len(stack[-1]) > len(stack[-3]):
-                num_comparisons += tim_merge(stack[-2], stack[-3], stack, len(stack) - 3)
+                num_comparisons += tim_merge(stack[-3], stack[-2], stack, len(stack) - 3)
             elif height >= 2 and len(stack[-1]) >= len(stack[-2]):
-                num_comparisons += tim_merge(stack[-1], stack[-2], stack, len(stack) - 2)
+                num_comparisons += tim_merge(stack[-2], stack[-1], stack, len(stack) - 2)
             elif height >= 3 and len(stack[-1]) + len(stack[-2]) >= len(stack[-3]):
-                num_comparisons += tim_merge(stack[-1], stack[-2], stack, len(stack) - 2)
+                num_comparisons += tim_merge(stack[-2], stack[-1], stack, len(stack) - 2)
             elif height >= 4 and len(stack[-2]) + len(stack[-3]) >= len(stack[-4]):
-                num_comparisons += tim_merge(stack[-1], stack[-2], stack, len(stack) - 2)
+                num_comparisons += tim_merge(stack[-2], stack[-1], stack, len(stack) - 2)
             else:
                 break
 
