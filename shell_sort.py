@@ -1,3 +1,5 @@
+import math
+
 def shell_sort1(nums: list[int]):
     num_comparisons = 0
     n = len(nums)
@@ -51,5 +53,35 @@ def shell_sort2(nums: list[int]):
             nums[j] = temp
 
         k += 1
+    
+    return num_comparisons
+
+
+def shell_sort3(nums: list[int]):
+    num_comparisons = 0
+    n = len(nums)
+
+    k = int(math.log2(n))
+    gaps = []
+    while k >= 1:
+        gaps.append((2 ** k) + 1)
+        k -= 1
+    
+    gaps.append(1)
+
+    for gap in gaps:
+        for i in range(gap, n):
+            temp = nums[i]
+            j = i
+
+            while j >= gap and nums[j-gap] > temp:
+                num_comparisons += 1
+                nums[j] = nums[j-gap]
+                j -= gap
+
+            if j >= gap:
+                num_comparisons += 1
+
+            nums[j] = temp
     
     return num_comparisons
