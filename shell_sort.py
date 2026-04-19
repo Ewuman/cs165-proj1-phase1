@@ -117,3 +117,32 @@ def shell_sort4(nums: list[int]):
             nums[j] = temp
     
     return num_comparisons
+
+
+def shell_sort5(nums: list[int]):
+    num_comparisons = 0
+    n = len(nums)
+
+    gaps = []
+    x = 1
+    while (3 ** x - 1) / 2 < n:
+        gaps.append(int((3 ** x - 1) / 2))
+        x += 1
+    gaps.sort(reverse=True)
+
+    for gap in gaps:
+        for i in range(gap, n):
+            temp = nums[i]
+            j = i
+
+            while j >= gap and nums[j-gap] > temp:
+                num_comparisons += 1
+                nums[j] = nums[j-gap]
+                j -= gap
+
+            if j >= gap:
+                num_comparisons += 1
+
+            nums[j] = temp
+    
+    return num_comparisons
