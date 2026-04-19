@@ -2,7 +2,7 @@
 # Feel free to comment out these lines before your algorithms are implemented.
 from insertion_sort import insertion_sort
 from tim_sort import tim_sort
-from shell_sort import shell_sort1, shell_sort2, shell_sort3
+from shell_sort import shell_sort1, shell_sort2, shell_sort3, shell_sort4
 # from shell_sort2 import shell_sort2
 # from shell_sort3 import shell_sort3
 # from shell_sort4 import shell_sort4
@@ -30,3 +30,7 @@ from shell_sort import shell_sort1, shell_sort2, shell_sort3
 # # you may choose to implement them in a single file, and import them as follows:
 # # from shell_sort import shell_sort1, shell_sort2, shell_sort3, shell_sort4,
 # shell_sort5
+
+# if __name__ == "__main__":
+#     x = shell_sort4([5, 2, 4, 1, 3, 11, 9, 8, 7, 6, 0, 10])
+#     print(x)
