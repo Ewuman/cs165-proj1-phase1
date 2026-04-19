@@ -13,6 +13,9 @@ def shell_sort1(nums: list[int]):
                 nums[j] = nums[j-gap]
                 j -= gap
 
+            if j >= gap:
+                num_comparisons += 1
+
             nums[j] = temp
 
         gap //= 2
